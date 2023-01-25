@@ -1,21 +1,13 @@
 import { ImageGalleryItem } from '../ImageGalleryItem/ImageGalleryItem';
+import { Button } from 'beckup/Button/Button';
 
-export const ImageGallery = ({ imgArr }) => {
-  return imgArr.map(img => {
-    return (
-      <li className="gallery-item">
-        <ImageGalleryItem img={img} />
-      </li>
-    );
-  });
-
-  // if (imgArr !== null) {
-  //   return imgArr.map(img => {
-  //     return (
-  //       <li className="gallery-item">
-  //         <ImageGalleryItem img={img}/>
-  //       </li>
-  //     );
-  //   });
-  // }
+export const ImageGallery = ({ func, imgArr }) => {
+  return (
+    <ul>
+      {imgArr.map(img => {
+        return <ImageGalleryItem key={img.id} img={img} />;
+      })}
+      <Button text={'Load more'} func={func} type={'button'} />
+    </ul>
+  );
 };

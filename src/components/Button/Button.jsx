@@ -1,6 +1,6 @@
-export const Button = ({ text }) => {
+export const Button = ({ func, text, type }) => {
   return (
-    <button type="submit" className="button">
+    <button type={type} className="button" onClick={func}>
       <span className="button-label">{text}</span>
     </button>
   );

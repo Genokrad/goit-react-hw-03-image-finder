@@ -30,7 +30,7 @@ export class Searchbar extends Component {
     return (
       <header className="searchbar">
         <form className="form" onSubmit={this.handleSubmit}>
-          <Button text={'Search'} />
+          <Button text={'Search'} type={'submit'} />
 
           <input
             className="input"

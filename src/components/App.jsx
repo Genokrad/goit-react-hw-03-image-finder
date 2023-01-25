@@ -29,6 +29,15 @@ export class App extends Component {
     }
   }
 
+  changePage = () => {
+    this.setState(prevPage => {
+      return {
+        page: prevPage.page + 1,
+      };
+    });
+    console.log(this.state.page);
+  };
+
   getImg = () => {
     const { query } = this.state;
     this.setState({
@@ -50,7 +59,7 @@ export class App extends Component {
     return (
       <>
         <Searchbar takeQuery={this.takeQuery} />
-        <ImageGallery imgArr={imgArr} />
+        <ImageGallery imgArr={imgArr} func={this.changePage} />
       </>
     );
   }
