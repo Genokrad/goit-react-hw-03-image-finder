@@ -9,6 +9,5 @@ export const fetchImages = async (query, page) => {
   const moreImages = await axios.get(
     `https://pixabay.com/api/?q=${query}&page=${page}&key=${API_KEY}&image_type=photo&orientation=horizontal&per_page=12`
   );
-  // console.log(moreImages.data);
   return moreImages.data;
 };
