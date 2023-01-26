@@ -1,4 +1,5 @@
 import { LiStyled, ImgStyled } from './ImageGalleryItem.styled';
+import PropTypes from 'prop-types';
 
 export const ImageGalleryItem = ({ img, imgCacher }) => {
   return (
@@ -10,4 +11,9 @@ export const ImageGalleryItem = ({ img, imgCacher }) => {
       />
     </LiStyled>
   );
+};
+
+ImageGalleryItem.propTypes = {
+  imgCacher: PropTypes.func.isRequired,
+  img: PropTypes.PropTypes.shape({}).isRequired,
 };

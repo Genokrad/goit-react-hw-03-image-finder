@@ -3,6 +3,7 @@ import { Button } from '../Button/Button';
 import { Loader } from '../Loader/Loader';
 import { Modal } from 'components/Modal/Modal';
 import { UlStyled } from './ImageGallery.styled';
+import PropTypes from 'prop-types';
 
 export const ImageGallery = ({
   func,
@@ -30,4 +31,15 @@ export const ImageGallery = ({
       {showModal && <Modal targetImg={targetImg} modalClose={modalClose} />}
     </>
   );
+};
+
+ImageGallery.prototype = {
+  func: PropTypes.func.isRequired,
+  imgArr: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  fetchArrLenght: PropTypes.number.isRequired,
+  loading: PropTypes.any.isRequired,
+  showModal: PropTypes.any.isRequired,
+  imgCacher: PropTypes.func.isRequired,
+  targetImg: PropTypes.any.isRequired,
+  modalClose: PropTypes.func.isRequired,
 };

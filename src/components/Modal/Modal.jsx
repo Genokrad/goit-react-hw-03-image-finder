@@ -1,7 +1,7 @@
 import { BackDropStyled, ModalStyled, BigImgStyled } from './Modal.styled';
 import { Button } from 'components/Button/Button';
 import { Component } from 'react';
-import { PropTypes } from 'react';
+import PropTypes from 'prop-types';
 
 export class Modal extends Component {
   closeModal = e => {
@@ -34,13 +34,7 @@ export class Modal extends Component {
   }
 }
 
-// Modal.prototype = {
-//   modalClose: PropTypes.func,
-//   stats: PropTypes.arrayOf(
-//     PropTypes.shape({
-//       label: PropTypes.string.isRequired,
-//       percentage: PropTypes.string.isRequired,
-//       id: PropTypes.string.isRequired,
-//     }).isRequired
-//   ),
-// };
+Modal.propTypes = {
+  targetImg: PropTypes.any.isRequired,
+  modalClose: PropTypes.func.isRequired,
+};

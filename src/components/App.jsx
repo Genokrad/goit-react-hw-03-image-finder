@@ -2,6 +2,8 @@ import { Component } from 'react';
 // import { Notify } from 'notiflix';
 import { Searchbar } from './Searchbar/Searchbar';
 import { ImageGallery } from './ImageGallery/ImageGallery';
+// import { Button } from 'components/Button/Button';
+
 import { fetchImages } from '../Cervices/FetchApi';
 // import { Paragraph } from './Paragraph/Paragraph';
 
@@ -65,7 +67,7 @@ export class App extends Component {
   render() {
     const { imgArr, fetchArrLenght, loading, showModal, targetImg } =
       this.state;
-    // console.log(this.state.fetchArrLenght);
+
     return (
       <>
         <Searchbar takeQuery={this.takeQuery} />
