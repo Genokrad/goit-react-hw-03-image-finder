@@ -1,11 +1,9 @@
 import { Component } from 'react';
-// import { nanoid } from 'nanoid';
 // import { Notify } from 'notiflix';
 import { Searchbar } from './Searchbar/Searchbar';
 import { ImageGallery } from './ImageGallery/ImageGallery';
-// import { Button } from 'components/Button/Button';
-// import { ImageGalleryItem } from 'components/ImageGalleryItem/ImageGalleryItem';
 import { fetchImages } from '../Cervices/FetchApi';
+// import { Paragraph } from './Paragraph/Paragraph';
 
 import './App.css';
 
@@ -17,12 +15,15 @@ export class App extends Component {
     imgArr: [],
     fetchArrLenght: 0,
     showModal: false,
+    targetImg: null,
+  };
+
+  modalClose = () => {
+    this.setState({ showModal: false });
   };
 
   takeQuery = query => {
-    this.setState({ query: query });
-    this.setState({ page: 1 });
-    this.setState({ imgArr: [] });
+    this.setState({ query: query, page: 1, imgArr: [] });
   };
 
   loadMore = () => {
@@ -57,9 +58,14 @@ export class App extends Component {
     this.setState({ fetchArrLenght: images.hits.length });
   };
 
+  imgCacher = image => {
+    this.setState({ targetImg: image, showModal: true });
+  };
+
   render() {
-    const { imgArr, fetchArrLenght, loading, showModal } = this.state;
-    console.log(this.state.fetchArrLenght);
+    const { imgArr, fetchArrLenght, loading, showModal, targetImg } =
+      this.state;
+    // console.log(this.state.fetchArrLenght);
     return (
       <>
         <Searchbar takeQuery={this.takeQuery} />
@@ -69,7 +75,11 @@ export class App extends Component {
           func={this.loadMore}
           loading={loading}
           showModal={showModal}
+          imgCacher={this.imgCacher}
+          targetImg={targetImg}
+          modalClose={this.modalClose}
         />
+        {/* {imgArr.length < 1 && <Paragraph />} */}
       </>
     );
   }

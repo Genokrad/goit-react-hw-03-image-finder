@@ -1,10 +1,10 @@
 import { Component } from 'react';
 import { Button } from 'components/Button/Button';
+import { Form, Header, Input } from './Searchbar.styled';
 
 export class Searchbar extends Component {
   state = {
     query: '',
-    value: '',
   };
 
   handleChange = event => {
@@ -28,12 +28,11 @@ export class Searchbar extends Component {
     const { query } = this.state;
 
     return (
-      <header className="searchbar">
-        <form className="form" onSubmit={this.handleSubmit}>
+      <Header>
+        <Form onSubmit={this.handleSubmit}>
           <Button text={'Search'} type={'submit'} />
 
-          <input
-            className="input"
+          <Input
             type="text"
             autoComplete="off"
             autoFocus
@@ -41,8 +40,8 @@ export class Searchbar extends Component {
             onChange={this.handleChange}
             value={query}
           />
-        </form>
-      </header>
+        </Form>
+      </Header>
     );
   }
 }

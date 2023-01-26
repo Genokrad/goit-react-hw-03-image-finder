@@ -1,7 +1,13 @@
-export const ImageGalleryItem = ({ img }) => {
+import { LiStyled, ImgStyled } from './ImageGalleryItem.styled';
+
+export const ImageGalleryItem = ({ img, imgCacher }) => {
   return (
-    <li className="gallery-item">
-      <img src={img.webformatURL} alt={img.tags} />
-    </li>
+    <LiStyled className="gallery-item">
+      <ImgStyled
+        src={img.webformatURL}
+        alt={img.tags}
+        onClick={() => imgCacher(img.largeImageURL)}
+      />
+    </LiStyled>
   );
 };
