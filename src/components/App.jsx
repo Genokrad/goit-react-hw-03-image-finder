@@ -15,10 +15,20 @@ export class App extends Component {
     page: 1,
     query: '',
     imgArr: [],
+    fetchArrLenght: 0,
+    showModal: false,
   };
 
   takeQuery = query => {
     this.setState({ query: query });
+    this.setState({ page: 1 });
+    this.setState({ imgArr: [] });
+  };
+
+  loadMore = () => {
+    this.setState(prevState => {
+      return { page: prevState.page + 1 };
+    });
   };
 
   componentDidUpdate(_, prevState) {
@@ -29,37 +39,37 @@ export class App extends Component {
     }
   }
 
-  changePage = () => {
-    this.setState(prevPage => {
-      return {
-        page: prevPage.page + 1,
-      };
-    });
-    console.log(this.state.page);
-  };
-
   getImg = () => {
-    const { query } = this.state;
+    const { query, page } = this.state;
     this.setState({
       loading: true,
     });
-    fetchImages(query, 1)
-      .then(images =>
-        this.setState({
-          imgArr: images.hits,
-        })
-      )
+    fetchImages(query, page)
+      .then(images => this.updateArrs(images))
       .catch(error => console.log('Something went wrong'))
       .finally(() => this.setState({ loading: false }));
   };
 
+  updateArrs = images => {
+    this.setState(prevState => {
+      return { imgArr: [...prevState.imgArr, ...images.hits] };
+    });
+    this.setState({ fetchArrLenght: images.hits.length });
+  };
+
   render() {
-    const { imgArr } = this.state;
-    console.log(this.state.imgArr);
+    const { imgArr, fetchArrLenght, loading, showModal } = this.state;
+    console.log(this.state.fetchArrLenght);
     return (
       <>
         <Searchbar takeQuery={this.takeQuery} />
-        <ImageGallery imgArr={imgArr} func={this.changePage} />
+        <ImageGallery
+          imgArr={imgArr}
+          fetchArrLenght={fetchArrLenght}
+          func={this.loadMore}
+          loading={loading}
+          showModal={showModal}
+        />
       </>
     );
   }
